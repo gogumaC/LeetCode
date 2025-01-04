@@ -1,29 +1,51 @@
+#include <math.h>
+
 bool isPalindrome(int x) {
 
-    int len = 0;
-    int xx = x;
-    do
+    if(x & 0x80000000)
     {
-        xx/=10;
-        len++;
-    }while(xx);
-    
-    if(x<0)
-    {
-        len++;
+        //printf("Minus\n");
+        return false;
     }
-
-    char str[len+1];
-    sprintf(str,"%d",x);
-
-    for(int i=0; i<=len/2; i++)
+    else
     {
-        if(str[i]!=str[len-i-1])
+        //find biggest digit
+        int xx=x;
+        int idx=0;
+        do
         {
-            return false;
+            idx++;
+            xx/=10;
+        }while(xx);
+
+        if(idx==1)
+        {
+            return true;
         }
+
+        int cur_idx = idx;
+
+        while(x!=0)
+        {
+            int tmp= pow(10,cur_idx-1);
+            int a = x%10;
+            int b = x/tmp;
+            //printf("%d %d\n",a,b);
+            if(a!=b)
+            {
+                return false;
+            }
+            cur_idx-=2;
+            x%=tmp;
+            x/=10;
+            
+           // printf("%d\n",x);
+        }
+
+
+
+
     }
 
-    return true;
-    
+   return true;
 }
