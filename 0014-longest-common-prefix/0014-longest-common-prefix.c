@@ -24,6 +24,8 @@ char* longestCommonPrefix(char** strs, int strsSize) {
 
         }  
     }
-    common[common_last] = '\0';
-    return common;
+    char* res = (char *)malloc(sizeof(char) * (common_last+1));
+    strncpy(res,common,common_last);
+    res[common_last]='\0';
+    return res;
 }
