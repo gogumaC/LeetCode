@@ -1,10 +1,29 @@
 char* longestCommonPrefix(char** strs, int strsSize) {
-    if (strsSize == 0) return "";
-    char* prefix = strs[0];
-    for (int i = 1; i < strsSize; i++)
-        while (strstr(strs[i], prefix) != strs[i]) {
-            prefix[strlen(prefix) - 1] = '\0';
-            if (!*prefix) return "";
-        }
-    return prefix;
+    char* common = strs[0];
+
+    int common_last = strlen(common);
+
+    for(int i = 1; i<strsSize; i++)
+    {
+        char* compare = strs[i];
+
+        int common_current =0;
+        int compare_current =0;
+
+        while(common_current<common_last && compare_current <common_last)
+        {
+            if(common[common_current]==compare[compare_current])
+            {
+                common_current++;
+                compare_current++;
+            }else{
+                if(common_last>common_current)
+                    common_last = common_current;
+                break;
+            }
+
+        }  
+    }
+    common[common_last] = '\0';
+    return common;
 }
