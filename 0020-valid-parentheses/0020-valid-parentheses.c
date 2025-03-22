@@ -70,6 +70,8 @@ bool isValid(char* s) {
         }
         if(!res) return false;
     }
+
+    free(st.arr);
     return st.top==-1;
     
 }
