@@ -1,18 +1,5 @@
 #include <stdarg.h>
 
-#define LOG 0
-
-
-void print_arr(char* arr,int len);
-
-void logm(const char* format, ...)
-{
-    va_list args;
-    va_start(args,format);
-    vprintf(format,args);
-    va_end(args);
-}
-
 typedef struct stack{
     char *arr;
     int top,size;
@@ -49,10 +36,8 @@ bool push(Stack* st, char value){
 bool find(Stack *st1, char find)
 {
     char* arr = st1->arr;
-    printf("top %d",st1->top);
     if(st1->top>=0)
     {
-        printf("find : %c , last : %c",find,arr[st1->top]);
         return find==pop(st1);
     }
 
@@ -60,14 +45,6 @@ bool find(Stack *st1, char find)
 
 }
 
-void print_arr(char* arr,int len){
-    printf("arrs : ");
-    for(int i=0;i<len;i++){
-        printf("%c ",*(arr+i));//arr[i],*(arr+i)로 하니까 heap buffer overflow남
-    }
-    printf("\n");
-
-}
 
 bool isValid(char* s) {
     Stack st;
@@ -81,18 +58,14 @@ bool isValid(char* s) {
         {
             case '(':
                 res=find(&st,')');
-                printf("() %d\n",res);
                 break;
             case '[':
                 res=find(&st,']');
-                printf("[] %d\n",res);
                 break;
             case '{':
                 res=find(&st,'}');
-                printf("{} %d\n",res);
                 break;
             default:
-                printf("default\n");
                 res=push(&st,c);
         }
         if(!res) return false;
