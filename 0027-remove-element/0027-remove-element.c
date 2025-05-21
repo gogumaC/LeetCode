@@ -4,8 +4,7 @@ int removeElement(int* nums, int numsSize, int val) {
 
     while(t<=r){
         if(nums[t]==val){
-            nums[t]=nums[r];
-            r--;
+            nums[t]=nums[r--];
         }else{
             t++;
         }
