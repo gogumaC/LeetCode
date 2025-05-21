@@ -10,7 +10,6 @@ int removeElement(int* nums, int numsSize, int val) {
 
     while(t<=r){
         if(nums[t]==val){
-            nums[t]='_';
             SWAP(nums[t],nums[r]);
             r--;
         }else{
