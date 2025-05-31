@@ -4,19 +4,16 @@ int climbStairs(int n) {
         return n;
     }
 
+    int step1=1;
+    int step2=2;
+    int current=0;
 
-    int* step=malloc(sizeof(int)*(n+1));
-    memset(step,0,sizeof(int)*(n+1));
-
-    step[1]=1;
-    step[2]=2;
     for(int i =3; i<=n;i++){
-        step[i]= step[i-1]+step[i-2];
+        current=step1+step2;
+        step1=step2;
+        step2=current;
     }
 
-    int res =step[n];
-    free(step);
-    
-    return res;
+    return current;
 }
 
