@@ -7,15 +7,13 @@
  */
 struct ListNode* deleteDuplicates(struct ListNode* head) {
 
-    if(!head) return NULL;
+    if(!head) return head;
 
     struct ListNode* c = head;
 
     while(c && c->next){
        if(c->val == c->next->val){
-        struct ListNode* tmp =c->next->next;
-        free(c->next);
-        c->next = tmp;
+        c->next = c->next->next;
        }else{
         c= c->next;
        }
