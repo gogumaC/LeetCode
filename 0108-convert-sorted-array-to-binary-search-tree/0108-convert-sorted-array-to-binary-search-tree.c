@@ -8,7 +8,6 @@
  */
 
 struct TreeNode* bst( int* nums, int start, int end){
-    printf("%d %d \n",start,end);
     if(start>end) return NULL;
     struct TreeNode* root = malloc(sizeof(struct TreeNode));
     int mid = start+(end-start)/2;
