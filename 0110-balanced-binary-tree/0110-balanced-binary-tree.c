@@ -10,27 +10,23 @@
 #define MAX(a,b) a>b?a:b
 
 
-int divideAndConquere(struct TreeNode* root, int depth, bool* res){
+int divideAndConquere(struct TreeNode* root, int depth){
 
     if(root->left==NULL && root->right ==NULL) return depth;
-    bool l_res,r_res;
-    l_res =true; r_res=true;
     int left=depth;
     int right =depth;
 
-    if(root->right!=NULL) left = divideAndConquere(root->right,depth+1,&l_res);
-    if(root->left!=NULL) right = divideAndConquere(root->left,depth+1,&r_res);
+    if(root->right!=NULL) left = divideAndConquere(root->right,depth+1);
+    if(root->left!=NULL) right = divideAndConquere(root->left,depth+1);
     //printf("-->d: %d r: %d %d l: %d %d\n",depth,r_res,right,l_res,left);
-    if(!r_res || !l_res ||abs(left-right)>1) *res = false;
-    return MAX(left,right);
+    if(left<0 || right<0 ||abs(left-right)>1) return -1;
+    else return MAX(left,right);
 }
 
 
 
 bool isBalanced(struct TreeNode* root) {
     if(root==NULL) return true;
-    bool res=true;
-    int depth =divideAndConquere(root,0,&res);
     //printf("%d ,%d\n",res, depth);
-    return res;
+    return divideAndConquere(root,0)>=0;
 }
