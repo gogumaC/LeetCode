@@ -19,7 +19,7 @@ int divideAndConquere(struct TreeNode* root, int depth){
     if(root->right!=NULL) left = divideAndConquere(root->right,depth+1);
     if(root->left!=NULL) right = divideAndConquere(root->left,depth+1);
     //printf("-->d: %d r: %d %d l: %d %d\n",depth,r_res,right,l_res,left);
-    if(left<0 || right<0 ||abs(left-right)>1) return -1;
+    if(left==-1 || right==-1 ||abs(left-right)>1) return -1;
     else return MAX(left,right);
 }
 
@@ -28,5 +28,5 @@ int divideAndConquere(struct TreeNode* root, int depth){
 bool isBalanced(struct TreeNode* root) {
     if(root==NULL) return true;
     //printf("%d ,%d\n",res, depth);
-    return divideAndConquere(root,0)>=0;
+    return divideAndConquere(root,0)!=-1;
 }
