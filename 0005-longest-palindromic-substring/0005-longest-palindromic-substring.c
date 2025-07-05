@@ -16,13 +16,14 @@ char* longestPalindrome(char* s) {
     for(int i=0;i<len;i++){
         for(int j=i;j<len;j++){
             int size = j-i+1;
+            if(size<=max) continue;
             if(isPalindrom(s+i,size)){
-                //printf("i:%d j:%d s:%d\n",i,j,size);
                 if(max<size){
                     max=size;
                     start=i; end=j;
                 }
             }
+            
         }
     }
 
