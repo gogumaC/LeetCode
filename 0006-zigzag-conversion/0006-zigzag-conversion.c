@@ -24,7 +24,7 @@ char* convert(char* s, int numRows) {
 
     for(int i=0;i<numRows;i++){
         li[i]=get_row_st_idx(i,numRows);
-        printf("row %d - idx %d\n",i,li[i]);
+       // printf("row %d - idx %d\n",i,li[i]);
     }
 
 
